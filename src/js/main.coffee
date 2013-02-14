@@ -1,25 +1,26 @@
-# exampleInvader = 
-# 	grid: [
-# 		[0,1,1],
-# 		[0,0,1],
-# 		[1,1,1],
-# 		[0,1,1],
-# 		[0,1,0]
-# 	]
 #
-# render exampleInvader, $('.box').first()
-
+# exampleInvader = 
+# {
+#   grid:[
+#     [0,1,1],
+#     [0,0,1],
+#     [1,1,1],
+#     [0,1,1],
+#     [0,1,0]
+# 	]
+# }
 randomInvader = ->
 	
-	createCell = (grid, x, y) -> grid[y][x] = Math.round(Math.random())
+	createCell = -> Math.round(Math.random())
 	
-	createRow  =    (grid, y) -> grid[y] = []; createCell grid, x, y for x in [0..2]
+	createRow  = -> createCell() for [0..2]
 	
-	createGrid =              -> grid = []; createRow grid, y for y in [0..4]; return grid;
+	createGrid = -> createRow() for [0..4]
 	
-	{ 
+	return { 
 		grid: createGrid()
 	}
+
 
 render = (invader, container) ->
 
@@ -28,14 +29,14 @@ render = (invader, container) ->
 	container.empty();
 
 	context = 
-		width: container.width() / 5;
-		height: container.height() / 5;
+		width: container.width() / 5
+		height: container.height() / 5
 
-	renderPixel = (pixel) ->
-		pixel = $('<div class="pixel">').addClass(if pixel then 'on' else '');
-		pixel.width(context.width)
-		pixel.height(context.height)
-		container.append(pixel)
+	renderPixel = (pixel) -> 
+		$('<div class="pixel">').addClass(if pixel then 'on' else '')
+			.width(context.width)
+			.height(context.height)
+			.appendTo(container)
 
 	renderRow = (row) ->
 		renderPixel leftPixel for leftPixel in row
@@ -43,7 +44,7 @@ render = (invader, container) ->
 
 	renderRow row for row in invader.grid	
 
-setInterval( 
-	-> render randomInvader(),
-	900
-)
+
+jQuery -> 
+	render(randomInvader())
+	$('body').click( -> render(randomInvader()) )
