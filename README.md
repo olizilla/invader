@@ -3,7 +3,7 @@ Invader
 
 A work in progress random SpaceInvader generator inspired by my original, open-source-code-as-art hero, Jared Tarbell.
 
-Specifically: http://levitated.net/daily/levInvaderFractal.html
+Demo: http://olizilla.github.com/invader/
 
 Uses:
 
