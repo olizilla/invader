@@ -1,50 +1,69 @@
-#
-# exampleInvader = 
-# {
-#   grid:[
-#     [0,1,1],
-#     [0,0,1],
-#     [1,1,1],
-#     [0,1,1],
-#     [0,1,0]
-# 	]
-# }
+###
+main.coffee
+===========
+Creates a randomised model of an Invader:
+
+> "The Invader occupies a 5 x 5 grid of blocks (25 bits). 
+> Internally, the Invader is represented by a 3 x 5 grid (15 bits) 
+> because it is horizontally symmetric." jtarbell, july 2003
+
+e.g
+	[             renders as: 
+		[1,0,1],              X.X.X
+		[1,1,1],              XXXXX
+		[0,1,1],              .XXX.
+		[0,0,1],              ..X..
+		[0,1,0]               .X.X.
+	]
+
+Renders to dom elements, for CSS to have it's way with.
+
+@author olizilla
+###
+
+###
+randomInvader: Creates the raw data equivalent of an Invader.
+@return {Object} an Invader with a grid property holding the 'pixel' data
+###
 randomInvader = ->
 	
 	createCell = -> Math.round(Math.random())
 	
-	createRow  = -> createCell() for [0..2]
+	createRow  = -> createCell() for [0..2] # The results are automagically accumlated in an array, and returned.
 	
-	createGrid = -> createRow() for [0..4]
+	createGrid = -> createRow() for [0..4]  # Same here... 
 	
 	return { 
 		grid: createGrid()
 	}
 
-
+###
+render: Turns an Invader into DOM and appends it to a container or the body.
+NOTE Empties the container before use so it can be called repeatedly with the same container
+###
 render = (invader, container) ->
 
 	if not container then container = $('body')
-
-	container.empty();
 
 	context = 
 		width: container.width() / 5
 		height: container.height() / 5
 
-	renderPixel = (pixel) -> 
-		$('<div class="pixel">').addClass(if pixel then 'on' else '')
+	renderCell = (cell) -> 
+		$('<div class="pixel">').addClass(if cell then 'on' else '')
 			.width(context.width)
 			.height(context.height)
-			.appendTo(container)
+		
+	renderRow = (row) -> 
+		row[4..3] = row[0..1].reverse()
+		renderCell(cell) for cell in row
 
-	renderRow = (row) ->
-		renderPixel leftPixel for leftPixel in row
-		renderPixel rightPixel for rightPixel in row[0..1].reverse();
+	elements = []
+	elements = elements.concat(renderRow(row)) for row in invader.grid
 
-	renderRow row for row in invader.grid	
+	container.empty().append(elements)
 
-
+# Do it!
 jQuery -> 
 	render(randomInvader())
 	$('body').click( -> render(randomInvader()) )
