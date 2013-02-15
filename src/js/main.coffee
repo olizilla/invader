@@ -41,9 +41,7 @@ randomInvader = ->
 render: Turns an Invader into DOM and appends it to a container or the body.
 NOTE Empties the container before use so it can be called repeatedly with the same container
 ###
-render = (invader, container) ->
-
-	if not container then container = $('body')
+render = (invader, container = $('body')) ->
 
 	renderCell = (cell) -> 
 		$('<div class="pixel">').addClass(if cell then 'on' else '')
