@@ -1,18 +1,37 @@
-html, body{
+@pixelOn: #111;
+@pixelOff: #FFF;
+
+html,body{
 	margin:0;
 	padding:0;
 	width:100%;
 	height:100%;
 }
 
+body,
+body.on{
+	background:@pixelOff
+}
+
 .pixel{
 	display:inline-block;
 	margin:0;
-	padding:0;
-	background:ghostwhite;
+	padding:0;	
 	vertical-align:top;
+	width:20%;
+	height:20%;
+	background:@pixelOff;
+
+	-webkit-transition: background 0.2s ease-in;
+	   -moz-transition: background 0.2s ease-in;
+	        transition: background 0.2s ease-in;
 }
 
-.on{
-	background:#222;
+.pixel.on{
+	background:@pixelOn;
+}
+
+.pixel:hover,
+.pixel.on:hover,{
+	background:goldenrod;
 }

@@ -45,14 +45,8 @@ render = (invader, container) ->
 
 	if not container then container = $('body')
 
-	context = 
-		width: container.width() / 5
-		height: container.height() / 5
-
 	renderCell = (cell) -> 
 		$('<div class="pixel">').addClass(if cell then 'on' else '')
-			.width(context.width)
-			.height(context.height)
 		
 	renderRow = (row) -> 
 		row[4..3] = row[0..1].reverse()
@@ -61,9 +55,13 @@ render = (invader, container) ->
 	elements = []
 	elements = elements.concat(renderRow(row)) for row in invader.grid
 
-	container.empty().append(elements)
+	container.removeClass('on').empty().append(elements)
 
 # Do it!
 jQuery -> 
 	render(randomInvader())
-	$('body').click( -> render(randomInvader()) )
+	$('body').on('click', '.pixel', 
+		(event) -> 
+			render(randomInvader(), $(this))
+			return false
+	)
