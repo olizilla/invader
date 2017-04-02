@@ -10,7 +10,7 @@ Created Feb 2013 as an exercise in learning whats good about coffeescript, and a
 
 ## Getting Started
 
-Open [./index.html] in a browser and click.
+Clone the repo and open [index.html](./index.html) in a browser and click.
 
 Built with node, npm & coffescript.
 
