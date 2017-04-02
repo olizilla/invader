@@ -1,40 +1,18 @@
-Invader
-=======
+# Invader
 
-A work in progress random SpaceInvader generator inspired by my original, open-source-code-as-art hero, Jared Tarbell.
+A random SpaceInvader generator in ~40 lines of fancy, arrays-all-the-things coffescript.
 
-Demo: http://olizilla.github.com/invader/
+Inspired by the work of Jared Tarbell, an open-source-code-as-art hero.
 
-Uses:
+Created Feb 2013 as an exercise in learning whats good about coffeescript, and arrays for all the things.
 
-- Coffee Script to codify the things
-- LESS to style the things
-- Grunt to tidy and translate the things to JS & CSS
-- [GRUNTEND](https://github.com/alanshaw/gruntend) as a handy foundation and leg up
+[Glitched](https://glitch.com/) in 2017 for fun and curiosity.
 
+## Getting Started
 
-Getting Started
----------------
+Open [./index.html] in a browser and click.
 
-Install [Node.js](http://nodejs.org/)
+Built with node, npm & coffescript.
 
-Install grunt:
-
-	npm install -g grunt
-
-Install plugins:
-
-	cd /path/to/gruntend
-	npm install
-
-Build the site:
-
-	grunt
-
-The built site can be found at dist/
-
-Grunt can watch the project and compile LESS and coffeescript when you make changes to the files. Grunt is setup to _not_ minify files when watching them to aid debugging whilst in development.
-
-	grunt watch
-
-Project build settings are configured in the usual `grunt.js` file.
+- `npm start` will re-build main.js from `main.coffee`
+- `npm watch` is better when editing, it'll rebuild `main.js` when `main.coffee` is saved.

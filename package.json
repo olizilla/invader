@@ -1,0 +1,30 @@
+{
+  "name": "invader",
+  "version": "1.0.0",
+  "description": "Mad Awesome Space Invader Generator",
+  "main": "index.js",
+  "scripts": {
+    "start": "coffee --compile main.coffee",
+    "watch": "coffee --compile --watch main.coffee",
+    "test": "say sorry"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olizilla/invader.git"
+  },
+  "keywords": [
+    "Tarbell",
+    "homage",
+    "coffescript",
+    "learning"
+  ],
+  "author": "olizilla",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/olizilla/invader/issues"
+  },
+  "homepage": "https://github.com/olizilla/invader#readme",
+  "dependencies": {
+    "coffee-script": "^1.12.4"
+  }
+}
